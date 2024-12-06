@@ -16,25 +16,23 @@ main = do
 split :: String -> [Int]
 split line = map read $ words line
 
-pairs :: [Int] -> [(Int, Int)]
-pairs report = zip report (drop 1 report)
 
 remove :: Int -> [a] -> [a]
 remove ix list = joined where
     (p1, p2) = splitAt ix list
     joined = p1 ++ tail p2
 
+
 kindaSafe :: [Int] -> Bool
 kindaSafe report = safe report || any safe reports where
-    len = length report
-    reports = map (`remove` report) [0..len - 1]
+    reports = map (`remove` report) [0..length report - 1]
 
 
 safe :: [Int] -> Bool
-safe report = safePair $ pairs report
+safe report = safePair $ zip report (drop 1 report)
 
 safePair :: [(Int, Int)] -> Bool
-safePair report = all close report && (all increasing report || all decreasing report) where
+safePair report = all increasing report || all decreasing report where
     close (a, b) = abs (a - b) <= 3
-    increasing (a, b) = b > a
-    decreasing (a, b) = b < a
+    increasing (a, b) = (b > a) && close(a, b)
+    decreasing (a, b) = (b < a) && close(a, b)
