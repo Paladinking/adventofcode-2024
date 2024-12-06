@@ -34,6 +34,7 @@ posCountXmas s x y w h = has_xmas where
     has_xmas = length $ filter (\(dx, dy) -> 
         dirHasXmas s 'M' (x + dx, y + dy) (dx, dy) (w, h)) coords
 
+
 countXmas :: String -> Int -> Int -> Int
 countXmas s w h = res where
     coords = [(x, y) | x <- [0..w - 1], y <- [0..h - 1]]
@@ -52,6 +53,7 @@ posHasMasX s x y w h = first && second where
         (Just 'M', Just 'S') -> True
         (Just 'S', Just 'M') -> True
         _ -> False
+
 
 countMasX :: String -> Int -> Int -> Int
 countMasX s w h = res where
