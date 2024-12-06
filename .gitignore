@@ -2,4 +2,4 @@ build
 *.o
 *.exe
 *.hi
-
+input/test.txt
