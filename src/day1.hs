@@ -1,10 +1,10 @@
-import Data.List (elemIndices, sort)
+import Data.List (sort)
 import Data.Foldable (foldl')
 
 
 main :: IO()
 main = do
-    input <- readFile "../input/input1.txt"
+    input <- readFile "input/input1.txt"
     let content = lines input
 
     let pairs = map split content
@@ -24,6 +24,6 @@ main = do
 
 split :: String -> (Int, Int)
 split line = (first, second) where
-    spaces = elemIndices ' ' line
-    first = read $ take (head spaces) line
-    second = read $ drop (last spaces + 1) $ take (length line) line
+    parts = words line
+    first = read $ head parts
+    second = read $ parts !! 1
