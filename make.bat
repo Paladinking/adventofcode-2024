@@ -68,7 +68,7 @@ if not exist build\day%DAY% (
 )
 echo Day %DAY%:
 
-ghc src\day%DAY%.hs -odir build\day%DAY% -hidir build\day%DAY% -o build\day%DAY%.exe
+ghc src\day%DAY%.hs -odir build\day%DAY% -hidir build\day%DAY% -o build\day%DAY%.exe -Wall -Wextra
 if %errorlevel% NEQ 0 (
     exit /B %errorlevel%
 )
