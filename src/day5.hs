@@ -61,4 +61,3 @@ correcUpdate rules pages = allowed where
     first = head pages
     after = drop 1 pages
     allowed = allowedFirst rules first after && correcUpdate rules after
-
