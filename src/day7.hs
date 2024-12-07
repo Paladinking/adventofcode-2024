@@ -21,11 +21,11 @@ intCat a b = (10 ^ countDigits b) * a + b
 
 
 split :: String -> (Integer, [Integer])
-split s = (res, val) where
+split s = (res, vals) where
     parts = words s
     res_str = take (length (head parts) - 1) $ head parts
     res = read res_str
-    val = map read (drop 1 parts)
+    vals = map read (drop 1 parts)
 
 
 isValid :: (Integer, [Integer]) -> Bool
@@ -33,8 +33,8 @@ isValid (_, []) = False
 isValid (res, n1:vals) = valid vals n1 where
     valid nums acc
       | null nums = acc == res
-      | otherwise = valid (drop 1 nums) (acc + head nums) || 
-                    valid (drop 1 nums) (acc * head nums)
+      | otherwise = valid (tail nums) (acc + head nums) ||
+                    valid (tail nums) (acc * head nums)
 
 
 isValid2 :: (Integer, [Integer]) -> Bool
@@ -42,6 +42,6 @@ isValid2 (_, []) = False
 isValid2 (res, n1:vals) = valid vals n1 where
     valid nums acc
       | null nums = acc == res
-      | otherwise = valid (drop 1 nums) (acc + head nums) || 
-                    valid (drop 1 nums) (acc * head nums) ||
-                    valid (drop 1 nums) (acc `intCat` head nums)
+      | otherwise = valid (tail nums) (acc + head nums) ||
+                    valid (tail nums) (acc * head nums) ||
+                    valid (tail nums) (acc `intCat` head nums)
