@@ -12,12 +12,12 @@ main = do
 
 
 atPos :: String -> Int -> Int -> Int -> Int -> Maybe Char
-atPos s x y w h | (x < 0) || (y < 0) || (x >= w) || (y >= h) = Nothing 
-atPos s x y w h = Just $ s !! (w * y + x)
+atPos _ x y w h | (x < 0) || (y < 0) || (x >= w) || (y >= h) = Nothing
+atPos s x y w _ = Just $ s !! (w * y + x)
 
 
 dirHasXmas :: String -> Char -> (Int, Int) -> (Int, Int) -> (Int, Int) -> Bool
-dirHasXmas s c (x, y) (dx, dy) (w, h) | c == 'S' = atPos s x y w h == Just c
+dirHasXmas s c (x, y) _ (w, h) | c == 'S' = atPos s x y w h == Just c
 dirHasXmas s c (x, y) (dx, dy) (w, h) = has_xmas where
     nc = case c of
            'M' -> 'A'

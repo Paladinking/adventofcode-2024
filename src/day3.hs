@@ -16,7 +16,7 @@ result s = prod + result (drop chars s) where
 
 
 toggleResult :: String -> Bool -> Int
-toggleResult s b | null s = 0
+toggleResult s _ | null s = 0
 toggleResult s b = val where
     (prod, chars) = readMul s
     val
